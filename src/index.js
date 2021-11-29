@@ -7,6 +7,7 @@ const searchInput = document.querySelector('input[name="searchQuery"]');
 const searchForm = document.querySelector('#search-form');
 const loadMoreBtn = document.querySelector('.load-more');
 
+
 searchForm.addEventListener('submit', event => {
   event.preventDefault();
 
@@ -22,4 +23,15 @@ searchForm.addEventListener('submit', event => {
 loadMoreBtn.addEventListener('click', event => {
   currentPage = currentPage + 1;
   fetrchImages(searchInput.value.trim(), currentPage);
+
+  const { height: cardHeight } = document
+  .querySelector('.gallery')
+  .firstElementChild.getBoundingClientRect();
+
+  setTimeout(() => {
+    window.scrollBy({
+      top: cardHeight * 2,
+      behavior: 'smooth',
+    });
+  },500);
 });
